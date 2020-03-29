@@ -36,24 +36,23 @@ async function createUser (req, res) {
     );
 }
 
-async function findAllUsers (req,resp){
-
+async function findAllUsers (req, res){
     try {
-    
-    const allUsers = await dbManager.User.findAll();
+        //Execute query
+        const users = await dbManager.User.findAll ();
+        
+        //Send response
+        res.json({
+                data: users
+        });
 
-    res.send(
-        {
-            data: allUsers
-        }
-    );
-    } catch(error){
-        console.log(error);
-        res.status(500).send(
-            {
-                message:":( LO LAMENTAMOS ALGO HA SALIDO MAL :("
-            }
-        )
+    } catch (e) {
+        // Print error on console
+        console.log(e);
+        // Send error message as a response 
+        res.status(500).send({
+            message: ":( ALGO SALIÓ MAL! SORRY :("
+        });
     }
 }
 
