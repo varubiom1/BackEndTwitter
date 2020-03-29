@@ -9,7 +9,7 @@ async function createUser (req, res) {
     // CHECK IF THE REQUEST BODY IS EMPTY
     if (!req.body) {
         res.status(400).send({
-          message: "Request body is empty!!!!"
+          message: "EL REQ ESTÁ VACÍO! OUT OF GAS ! SORRY :("
         });
         return;
     }
@@ -30,10 +30,32 @@ async function createUser (req, res) {
             console.log(e);
             // Send error message as a response 
             res.status(500).send({
-                message: "Some error occurred"
+                message: ":( HUBO UN ERROR"
             });
         }
     );
 }
 
+async function findAllUsers (req,resp){
+
+    try {
+    
+    const allUsers = await dbManager.User.findAll();
+
+    res.send(
+        {
+            data: allUsers
+        }
+    );
+    } catch(error){
+        console.log(error);
+        res.status(500).send(
+            {
+                message:":( LO LAMENTAMOS ALGO HA SALIDO MAL :("
+            }
+        )
+    }
+}
+
 exports.createUser = createUser;
+exports.findAllUsers = findAllUsers;
