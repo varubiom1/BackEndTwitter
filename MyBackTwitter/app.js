@@ -20,8 +20,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-dbManager.sequelizeConnection.authenticate().then()(
-    ()=>{
+dbManager.sequelizeConnection.authenticate().
+then(()=>{
             console.log("******CONEXIÓN ESTABLECIDA!!!******");
             dbManager.sequelizeConnection.sync().then(
                 ()=>{

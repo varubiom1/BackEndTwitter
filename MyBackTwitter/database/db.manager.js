@@ -9,8 +9,8 @@ const PostModel = require('../models/post.model');
 const User= UserModel (sequelizeConnection,Sequelize);
 const Post= PostModel (sequelizeConnection,Sequelize);
 
-User.hasMany(Post, {foreingKey: "idPost", sourceKey: "idUser"} );
-Post.belongsTo(User,{foreingKey, sourceKey:"idPost"});
+User.hasMany(Post, {foreignKey: "idPost", sourceKey: "idUser"} );
+Post.belongsTo(User,{foreignKey: "idUser", sourceKey:"idPost"});
 
 const models={
     User:User,
