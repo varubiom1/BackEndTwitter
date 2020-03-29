@@ -38,22 +38,39 @@ async function createUser (req, res) {
 
 async function findAllUsers (req, res){
     try {
-        //Execute query
         const users = await dbManager.User.findAll ();
-        
-        //Send response
         res.json({
                 data: users
         });
 
     } catch (e) {
-        // Print error on console
         console.log(e);
-        // Send error message as a response 
         res.status(500).send({
             message: ":( ALGO SALIÓ MAL! SORRY :("
         });
     }
+}
+
+async function findUserById(req,res){
+    try{
+        const {idUser, idPost}=req.params;
+
+        const user = await dbManager.User.findOne(
+            {
+                where:{
+                    idUser: idUser
+                }
+            }
+        );
+
+        res.json(user);
+
+    }catch (error){
+        req.status(500).send({
+            message: ":( ALGO SALIÓ MAL! SORRY :("
+        });
+    }
+
 }
 
 exports.createUser = createUser;
