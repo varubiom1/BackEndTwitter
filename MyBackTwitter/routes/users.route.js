@@ -11,4 +11,13 @@ router.post('/', userController.createUser);
 
 router.get('/',userController.findAllUsers);
 
+
+/**
+ * GET por ID de USUARIO
+ */
+
+ router.get('/:idUser', userController.findUserById);
+
 module.exports = router;
+
+

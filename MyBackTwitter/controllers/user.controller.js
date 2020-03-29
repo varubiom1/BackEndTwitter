@@ -75,3 +75,4 @@ async function findUserById(req,res){
 
 exports.createUser = createUser;
 exports.findAllUsers = findAllUsers;
+exports.findUserById = findUserById;
