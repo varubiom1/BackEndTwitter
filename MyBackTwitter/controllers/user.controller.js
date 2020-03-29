@@ -5,8 +5,7 @@ const dbManager = require ('../database/db.manager');
  * @param {*} userObject JSON Object with User information
  */
 async function createUser (req, res) {
-    
-    // CHECK IF THE REQUEST BODY IS EMPTY
+     // CHECK IF THE REQUEST BODY IS EMPTY
     if (!req.body) {
         res.status(400).send({
           message: "EL REQ ESTÁ VACÍO! OUT OF GAS ! SORRY :("
@@ -62,7 +61,7 @@ async function findUserById(req,res){
                 }
             }
         );
-
+            
         res.json(user);
 
     }catch (error){
@@ -70,9 +69,33 @@ async function findUserById(req,res){
             message: ":( ALGO SALIÓ MAL! SORRY :("
         });
     }
-
 }
 
+/**
+ * Delete of an user
+ * @param {*} userObject JSON Object with User information
+ */
+async function deleteByUser (req, res){
+    dbManager.User.destroy({
+        where: {
+            idUser: req.params.idUser
+        }
+    }).then(function (deletedRecord) {
+        if(deletedRecord === 1){
+            res.status(200).json({message:"Deleted successfully"});          
+        }
+        else
+        {
+            res.status(404).json({message:"record not found"})
+        }
+    })
+    .catch(function (error){
+        res.status(500).json(error);
+    }); 
+     
+}
+    
 exports.createUser = createUser;
 exports.findAllUsers = findAllUsers;
 exports.findUserById = findUserById;
+exports.deleteByUser= deleteByUser;

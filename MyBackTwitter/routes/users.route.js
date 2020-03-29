@@ -18,6 +18,11 @@ router.get('/',userController.findAllUsers);
 
  router.get('/:idUser', userController.findUserById);
 
+/**
+ * BORRAR USUARIO
+ */
+router.delete('/:idUser', userController.deleteByUser);
+
 module.exports = router;
 
 
