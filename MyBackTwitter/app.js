@@ -3,8 +3,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//IMPORTA RUTAS
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/users.route');
 
 //IMPORTAMOS DB MANAGER
 const dbManager = require('./database/db.manager');

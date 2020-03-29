@@ -23,10 +23,12 @@ function createUser (req,res){
         }
     ).catch (
         error => {
-           console.log(e);
+           console.log(error);
            res.status(500).send({
                 message: ":( HUBO UN ERROR"
             });
         }
     );
 }
+
+exports.createUser = createUser;
