@@ -23,10 +23,16 @@ app.use('/users', usersRouter);
 dbManager.sequelizeConnection.authenticate().then()(
     ()=>{
             console.log("******CONEXIÓN ESTABLECIDA!!!******");
-            dbManager.sequelizeConnection.sync();
+            dbManager.sequelizeConnection.sync().then(
+                ()=>{
+                    console.log(":D BASE DE DATOS SINCRONIZADA!");
+                }
+            )
         }
 ).catch(
-
+    error=>{
+        console.log(":( NO SE HA PODIDO ESTABLECER LA CONEXIÓN", error);
+    }
 );
 
 module.exports = app;
