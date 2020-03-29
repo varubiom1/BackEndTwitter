@@ -6,6 +6,7 @@ var logger = require('morgan');
 //IMPORTA RUTAS
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users.route');
+var postsRouter = require('./routes/post.route');
 
 //IMPORTAMOS DB MANAGER
 const dbManager = require('./database/db.manager');
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/posts', postsRouter);
 
 dbManager.sequelizeConnection.authenticate().
 then(()=>{
