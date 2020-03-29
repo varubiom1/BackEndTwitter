@@ -1,18 +1,21 @@
-const dbManager = require('../database/db.manager');
+const dbManager = require ('../database/db.manager');
 
 /**
- * @param {*} req
- * @param {*} res
-*/
-
-function createUser (req,res){
+ * Creation of an user
+ * @param {*} userObject JSON Object with User information
+ */
+async function createUser (req, res) {
+    
+    // CHECK IF THE REQUEST BODY IS EMPTY
     if (!req.body) {
         res.status(400).send({
-          message: "REQ ESTÁ VACÍO! OUT OF GAS!:("
+          message: "Request body is empty!!!!"
         });
         return;
     }
-    const newUserObject ={
+
+     // CREATING THE OBJECT TO PERSIST
+    const newUserObject = {
         username: req.body.username,
         creation_date: req.body.creation_date
     }
@@ -22,10 +25,12 @@ function createUser (req,res){
             res.send (data);
         }
     ).catch (
-        error => {
-           console.log(error);
-           res.status(500).send({
-                message: ":( HUBO UN ERROR"
+        e => {
+            // Print error on console
+            console.log(e);
+            // Send error message as a response 
+            res.status(500).send({
+                message: "Some error occurred"
             });
         }
     );
