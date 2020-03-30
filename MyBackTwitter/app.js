@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users.route');
 var postsRouter = require('./routes/post.route');
 var followersRouter= require('./routes/follower.route');
 
+
 //IMPORTAMOS DB MANAGER
 const dbManager = require('./database/db.manager');
 
@@ -24,6 +25,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/followers', followersRouter);
+
 
 dbManager.sequelizeConnection.authenticate().
 then(()=>{

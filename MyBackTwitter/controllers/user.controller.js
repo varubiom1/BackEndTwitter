@@ -16,7 +16,8 @@ async function createUser (req, res) {
      // CREATING THE OBJECT TO PERSIST
     const newUserObject = {
         username: req.body.username,
-        creation_date: req.body.creation_date
+        creation_date: req.body.creation_date,
+        password: req.body.password
     }
 
     dbManager.User.create(newUserObject).then (
