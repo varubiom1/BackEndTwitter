@@ -11,4 +11,7 @@ router.get('/', postController.findAllPosts);
 /*POST ver post por ID */
 router.get('/:idUser', postController.findPostById);
 
+/*POST boorar por idpost*/
+router.delete('/:idPost', postController.deletePost);
+
 module.exports = router;
