@@ -42,5 +42,28 @@ async function findAllPosts (req, res){
     }
 }
 
+async function findPostById(req,res){
+    try{
+        const {idUser, idPost}=req.params;
+
+        const post = await dbManager.Post.findOne(
+            {
+                where:{
+                    idUser: idUser
+                }
+            }
+        );            
+        res.json(post);
+
+    }catch (error){
+        req.status(500).send({
+            message: ":( ALGO SALIÓ MAL! SORRY :("
+        });
+    }
+}
+
+
+
 exports.createPost = createPost;
 exports.findAllPosts=findAllPosts;
+exports.findPostById= findPostById;
