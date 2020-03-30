@@ -27,4 +27,26 @@ async function createMesage (req, res) {
       });
     });
 }
+
+async function findMessageById(req,res){
+  try{
+      const {idUserSource, idMessage}=req.params;
+
+      const message = await dbManager.Message.findOne(
+          {
+              where:{
+                  idMessage: idMessage
+              }
+          }
+      );            
+      res.json(message);
+
+  }catch (error){
+      req.status(500).send({
+          message: ":( ALGO SALIÓ MAL! SORRY :("
+      });
+  }
+}
+
 exports.createMesage = createMesage;
+exports.findMessageById=findMessageById;
