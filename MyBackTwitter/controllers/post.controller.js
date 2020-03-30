@@ -26,4 +26,21 @@ async function createPost (req, res) {
       });
     });
 }
+
+async function findAllPosts (req, res){
+    try {
+        const posts = await dbManager.Post.findAll ();
+        res.json({
+                data: posts
+        });
+
+    } catch (e) {
+        console.log(e);
+        res.status(500).send({
+            message: ":( ALGO SALIÓ MAL! SORRY :("
+        });
+    }
+}
+
 exports.createPost = createPost;
+exports.findAllPosts=findAllPosts;
