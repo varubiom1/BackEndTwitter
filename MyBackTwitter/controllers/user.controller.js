@@ -94,8 +94,33 @@ async function deleteByUser (req, res){
     }); 
      
 }
+
+async function authUser(req, res) {
+    try {
+      const { username, password } = req.body;
+      //Execute query
+      const user = await dbManager.User.findOne({
+        //insertar autenticación
+        where: {
+          username: username,
+          password: password
+        }
+      });
+      //Send response
+      if (user) res.json("usuario logeado correctamente");
+      else res.json("usuario o contraseña incorrecta");
+    } catch (e) {
+      // Print error on console
+      console.log(e);
+      // Send error message as a response
+      res.status(500).send({
+        message: "Some error occurred"
+      });
+    }
+  }
     
 exports.createUser = createUser;
 exports.findAllUsers = findAllUsers;
 exports.findUserById = findUserById;
 exports.deleteByUser= deleteByUser;
+exports.authUser=authUser;

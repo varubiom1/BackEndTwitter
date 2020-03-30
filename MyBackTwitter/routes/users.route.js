@@ -23,6 +23,9 @@ router.get('/',userController.findAllUsers);
  */
 router.delete('/:idUser', userController.deleteByUser);
 
+/**AUTENTICACIÓN USUARIO */
+router.post("/authUser", userController.authUser);
+
 module.exports = router;
 
 

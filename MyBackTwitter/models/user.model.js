@@ -11,6 +11,7 @@ module.exports = (sequelize, Sequelize) =>{
             unique: true
         },
         creation_date: Sequelize.DATE,
+        password: Sequelize.STRING
     }, {
         tableName: "users"
     });    
